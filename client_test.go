@@ -7,17 +7,25 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 const (
 	okResponse = `{
-			"git": {
-				"name": "Git",
-				"key": "git",
-				"fileName": "Git.gitignore",
-				"contents": "contents"
-			}
-		}`
+		"goodsync": {
+			 "name": "GoodSync",
+			 "key": "goodsync",
+			 "fileName": "GoodSync.gitignore",
+			 "contents": "\n### GoodSync ###\n_gsdata_\n"
+		 },
+		 "psoccreator": {
+			 "name": "PSoCCreator",
+			 "key": "psoccreator",
+			 "fileName": "PSoCCreator.gitignore",
+			 "contents": "\n### PSoCCreator ###\n# Project Settings\n*.cywrk.*\n*.cyprj.*\n\n# Generated Assets and Resources\nDebug/\nRelease/\nExport/\n*/codegentemp\n*/Generated_Source\n*_datasheet.pdf\n*_timing.html\n*.cycdx\n*.cyfit\n*.rpt\n*.svd\n*.log\n*.zip\n"
+		 }
+	 }`
 )
 
 func TestClientGetList(t *testing.T) {
@@ -31,15 +39,15 @@ func TestClientGetList(t *testing.T) {
 	cli := NewClient()
 	cli.httpClient = httpClient
 
-	list, _ := cli.GetList()
+	list, err := cli.GetList()
 
-	if len(list) != 0 {
-		t.Errorf("list should not be empty, got: %d, want %d", len(list), 1)
-	}
+	assert.Nil(t, err)
+	assert.Equal(t, 2, len(list), "it should not be empty")
+	assert.Equal(t, "GoodSync", list["goodsync"].Name, "it should match to git")
 }
 
 func testingHTTPClient(handler http.Handler) (*http.Client, func()) {
-	s := httptest.NewServer(handler)
+	s := httptest.NewTLSServer(handler)
 
 	cli := &http.Client{
 		Transport: &http.Transport{

@@ -5,5 +5,11 @@ import (
 )
 
 func main() {
-	fmt.Println("hello world")
+	cli := NewClient()
+	list, err := cli.GetList()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(list["git"])
 }
