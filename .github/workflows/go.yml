@@ -9,7 +9,7 @@ on:
 jobs:
 
   build:
-    name: Build
+    name: Build & Test
     runs-on: ubuntu-latest
     steps:
 
@@ -32,3 +32,6 @@ jobs:
 
     - name: Build
       run: go build -v .
+
+    - name: Test
+      run: go test -v .
