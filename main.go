@@ -1,15 +1,7 @@
 package main
 
-import (
-	"fmt"
-)
+import "github.com/faizmokhtar/gitignore/cmd"
 
 func main() {
-	cli := NewClient()
-	list, err := cli.GetList()
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println(list["git"])
+	cmd.Execute()
 }
