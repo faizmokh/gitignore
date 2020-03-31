@@ -8,10 +8,12 @@ require (
 	github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
 	github.com/mattn/go-colorable v0.1.6 // indirect
 	github.com/mattn/go-runewidth v0.0.8 // indirect
+	github.com/mitchellh/go-homedir v1.1.0
 	github.com/peterh/liner v1.2.0 // indirect
 	github.com/sirupsen/logrus v1.4.2 // indirect
-	github.com/spf13/cobra v0.0.6 // indirect
+	github.com/spf13/cobra v0.0.6
 	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/spf13/viper v1.4.0
 	github.com/stretchr/testify v1.5.1
 	go.starlark.net v0.0.0-20200306205701-8dd3e2ee1dd5 // indirect
 	golang.org/x/arch v0.0.0-20200312215426-ff8b605520f4 // indirect
